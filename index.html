@@ -506,6 +506,105 @@
             }
         }
 
+        @media (max-width: 900px) {
+    .pagina-inicial {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    .menu-navegacao {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 100%;
+    }
+    .botao-nav {
+        padding: 1rem 1.2rem;
+        font-size: 1.1rem;
+    }
+    .avatar-principal {
+        width: 100px;
+        height: 100px;
+        margin: 1rem 0;
+    }
+    .seletor-idioma {
+        top: 10px;
+        right: 10px;
+        gap: 0.3rem;
+    }
+    .botao-idioma {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.9rem;
+    }
+    .pagina-conteudo {
+        padding: 2rem 0.5rem;
+    }
+    .titulo-secao {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .titulo-local {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    .card-sobre,
+    .card-curriculo {
+        padding: 1rem;
+    }
+    .grid-fotos,
+    .grid-curriculo,
+    .grid-sobre {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .modal-fullscreen .info-fullscreen {
+        padding: 1rem 0.5rem;
+        font-size: 1rem;
+    }
+    .botao-fechar,
+    .botao-fechar-modal {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .pagina-inicial {
+        padding: 0.5rem;
+    }
+    .avatar-principal {
+        width: 70px;
+        height: 70px;
+    }
+    .titulo-secao {
+        font-size: 1.3rem;
+    }
+    .botao-nav {
+        font-size: 1rem;
+        padding: 0.7rem 0.7rem;
+    }
+    .intro-curriculo,
+    .intro-galeria {
+        font-size: 1rem;
+        padding: 0 0.2rem;
+    }
+    .card-sobre,
+    .card-curriculo {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+    .grid-fotos,
+    .grid-curriculo,
+    .grid-sobre {
+        gap: 0.5rem;
+    }
+    .botao-download {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+        margin-top: 1rem;
+    }
+}
         /* ===== MODAL FULLSCREEN PARA FOTOS ===== */
         .modal-fullscreen {
             display: none;
@@ -1003,7 +1102,7 @@
                 'curriculo': 'Resume',
                 'contato': 'Contact',
                 'minha-galeria': 'My Gallery',
-                'meu-curriculo': 'My Resume',
+                'meu_curriculo': 'My Resume',
                 'entre-em-contato': 'Get in Touch'
             }
         };
