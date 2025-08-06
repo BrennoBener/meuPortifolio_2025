@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brenno Bener - Portfólio Digital</title>
+    
+    <!-- Fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== VARIÁVEIS CSS (Cores e configurações principais) ===== */
+        :root {
+            --cor-primaria: #2d5016;     /* Verde escuro principal */
+            --cor-secundaria: #1a2f0d;   /* Verde muito escuro */
+            --cor-clara: #4a7c59;        /* Verde claro */
+            --cor-dourada: #b8860b;      /* Dourado para destaques */
+            --fundo-escuro: #0a0f06;     /* Preto esverdeado */
+            --texto-claro: #e6f2d3;      /* Verde bem claro para texto */
+        }
+
+        /* ===== RESET E CONFIGURAÇÕES BÁSICAS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--fundo-escuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ===== FUNDO GRADIENTE ANIMADO ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(45, 80, 22, 0.4) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(26, 47, 13, 0.3) 0%, transparent 30%),
+                linear-gradient(135deg, var(--cor-secundaria) 0%, var(--fundo-escuro) 50%, #050802 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== PÁGINA INICIAL (HOME) ===== */
+        .pagina-inicial {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Avatar/Foto principal */
+        .avatar-principal {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--cor-dourada);
+            margin: 2rem 0;
+            /* SUBSTITUA PELA SUA FOTO: coloque sua foto na pasta /images/ */
+            background-image: url('/images/WhatsApp\ Image\ 2025-07-12\ at\ 19.14.39.jpeg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 30px rgba(45, 80, 22, 0.6), 0 0 60px rgba(184, 134, 11, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .avatar-principal:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(45, 80, 22, 0.8), 0 0 80px rgba(184, 134, 11, 0.5);
+        }
+
+        /* Seletor de idioma */
+        .seletor-idioma {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .botao-idioma {
+            background: linear-gradient(145deg, rgba(45, 80, 22, 0.7), rgba(26, 47, 13, 0.5));
+            border: 2px solid var(--cor-primaria);
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            color: var(--texto-claro);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .botao-idioma:hover {
+            transform: translateY(-3px);
+            border-color: var(--cor-dourada);
+            background: linear-gradient(145deg, rgba(74, 124, 89, 0.8), rgba(45, 80, 22, 0.6));
+        }
+
+        .botao-idioma.ativo {
+            background: linear-gradient(145deg, var(--cor-dourada), #996f09);
+            color: var(--fundo-escuro);
+            font-weight: bold;
+        }
+
+        /* Menu de navegação principal */
+        .menu-navegacao {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 600px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .botao-nav {
+            background: linear-gradient(145deg, rgba(45, 80, 22, 0.9), rgba(26, 47, 13, 0.7));
+            color: var(--texto-claro);
+            border: 3px solid var(--cor-primaria);
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            border-radius: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        .botao-nav:hover {
+            background: linear-gradient(145deg, rgba(74, 124, 89, 0.95), rgba(45, 80, 22, 0.85));
+            border-color: var(--cor-dourada);
+            transform: translateY(-8px) scale(1.05);
+            color: var(--fundo-escuro);
+            font-weight: bold;
+        }
+
+        /* ===== PÁGINAS DE CONTEÚDO ===== */
+        .pagina-conteudo {
+            display: none;
+            min-height: 100vh;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pagina-conteudo.ativa {
+            display: block;
+            animation: surgirPagina 0.8s ease-out;
+        }
+
+        @keyframes surgirPagina {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Botão X para fechar páginas */
+        .botao-fechar {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, var(--cor-primaria), var(--cor-secundaria));
+            border: 2px solid var(--cor-dourada);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 200;
+            font-size: 1.5rem;
+            color: var(--texto-claro);
+            font-weight: bold;
+        }
+
+        .botao-fechar:hover {
+            transform: scale(1.2) rotate(90deg);
+            border-color: var(--cor-clara);
+            background: linear-gradient(145deg, var(--cor-dourada), #996f09);
+            color: var(--fundo-escuro);
+        }
+
+        /* Títulos das seções */
+        .titulo-secao {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--cor-dourada);
+            text-align: center;
+            margin-bottom: 4rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+        }
+
+        /* ===== PÁGINA SOBRE ===== */
+        .grid-sobre {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .card-sobre {
+            background: linear-gradient(145deg, rgba(45, 80, 22, 0.4), rgba(26, 47, 13, 0.3));
+            border: 3px solid var(--cor-primaria);
+            border-radius: 15px;
+            padding: 3rem;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-sobre:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--cor-dourada);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        }
+
+        .card-sobre h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--cor-dourada);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .texto-sobre {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--texto-claro);
+            text-align: justify;
+        }
+
+        /* Lista de habilidades */
+        .lista-habilidades {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lista-habilidades li {
+            background: linear-gradient(90deg, rgba(45, 80, 22, 0.5), rgba(26, 47, 13, 0.3));
+            border-left: 5px solid var(--cor-dourada);
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .lista-habilidades li:hover {
+            transform: translateX(15px);
+            background: linear-gradient(90deg, rgba(74, 124, 89, 0.6), rgba(45, 80, 22, 0.4));
+        }
+
+        /* ===== PÁGINA GALERIA/MOMENTOS ===== */
+        .intro-galeria {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.4rem;
+            color: var(--texto-claro);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .secao-local {
+            margin-bottom: 6rem;
+        }
+
+        .titulo-local {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--cor-dourada);
+            margin-bottom: 3rem;
+            text-align: center;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .card-foto {
+            position: relative;
+            aspect-ratio: 16/10;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            border: 4px solid var(--cor-primaria);
+            background: var(--cor-secundaria);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+        }
+
+        .card-foto:hover {
+            transform: scale(1.08) rotate(3deg);
+            border-color: var(--cor-dourada);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .imagem-foto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            filter: sepia(20%) contrast(1.1) saturate(0.9);
+        }
+
+        .card-foto:hover .imagem-foto {
+            transform: scale(1.2);
+            filter: sepia(30%) contrast(1.2) saturate(1.1) brightness(1.1);
+        }
+
+        /* Overlay que aparece ao passar o mouse */
+        .overlay-foto {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 15, 6, 0.95), transparent);
+            color: var(--texto-claro);
+            padding: 2.5rem;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.7s ease;
+        }
+
+        .card-foto:hover .overlay-foto {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .titulo-foto {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--cor-dourada);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .descricao-foto {
+            font-size: 1rem;
+            opacity: 0.95;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* ===== PÁGINA CURRÍCULO ===== */
+        .intro-curriculo {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.4rem;
+            color: var(--texto-claro);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .grid-curriculo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .card-curriculo {
+            background: linear-gradient(145deg, rgba(45, 80, 22, 0.4), rgba(26, 47, 13, 0.3));
+            border: 3px solid var(--cor-primaria);
+            border-radius: 15px;
+            padding: 3rem;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-curriculo:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--cor-dourada);
+        }
+
+        .card-curriculo h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--cor-dourada);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Botão de download */
+        .botao-download {
+            background: linear-gradient(145deg, var(--cor-dourada), #996f09);
+            color: var(--fundo-escuro);
+            border: none;
+            padding: 1.8rem 3.5rem;
+            border-radius: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.6);
+            margin-top: 3rem;
+        }
+
+        .botao-download::before {
+            content: '📄';
+            font-size: 2rem;
+        }
+
+        .botao-download:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.8);
+        }
+
+        /* ===== RESPONSIVIDADE (Mobile) ===== */
+        @media (max-width: 768px) {
+            .seletor-idioma {
+                top: 20px;
+                right: 20px;
+                gap: 0.5rem;
+            }
+            
+            .botao-idioma {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .botao-fechar {
+                width: 40px;
+                height: 40px;
+                top: 80px;
+                font-size: 1.3rem;
+            }
+            
+            .pagina-inicial {
+                padding: 1.5rem;
+            }
+            
+            .menu-navegacao {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
+            }
+            
+            .botao-nav {
+                padding: 1.3rem 1.8rem;
+                font-size: 1.2rem;
+            }
+            
+            .avatar-principal {
+                width: 100px;
+                height: 100px;
+                margin: 1.5rem 0;
+            }
+            
+            .pagina-conteudo {
+                padding: 4rem 1.5rem;
+            }
+            
+            .titulo-secao {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .titulo-local {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .card-sobre,
+            .card-curriculo {
+                padding: 2rem;
+            }
+            
+            .grid-fotos {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ===== MODAL FULLSCREEN PARA FOTOS ===== */
+        .modal-fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 6, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-fullscreen.ativo {
+            display: flex;
+        }
+
+        .container-fullscreen {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imagem-fullscreen {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 5px solid var(--cor-primaria);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.9);
+            filter: sepia(15%) contrast(1.05) saturate(1.1);
+        }
+
+        .imagem-fullscreen:hover {
+            border-color: var(--cor-dourada);
+        }
+
+        .botao-fechar-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, var(--cor-primaria), var(--cor-secundaria));
+            border: 2px solid var(--cor-dourada);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.8rem;
+            color: var(--texto-claro);
+            z-index: 10;
+        }
+
+        .botao-fechar-modal:hover {
+            transform: scale(1.2) rotate(-10deg);
+            background: linear-gradient(145deg, var(--cor-dourada), #996f09);
+            color: var(--fundo-escuro);
+        }
+
+        /* Info da foto no fullscreen */
+        .info-fullscreen {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 90%;
+            background: linear-gradient(145deg, rgba(10, 15, 6, 0.95), rgba(26, 47, 13, 0.9));
+            border: 3px solid var(--cor-primaria);
+            border-radius: 15px;
+            padding: 2.5rem 3.5rem;
+            color: var(--texto-claro);
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        .titulo-fullscreen {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--cor-dourada);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+        }
+
+        .descricao-fullscreen {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-style: italic;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== EXEMPLO DE COMENTÁRIOS PARA TRADUÇÃO ===== -->
+
+    <!-- 
+        Para cada texto fixo, adicione:
+        data-text-pt="Texto em português"
+        data-text-en="Texto em inglês"
+        Exemplo:
+        <h2 data-text-pt="Sobre Mim" data-text-en="About Me">Sobre Mim</h2>
+    -->
+
+    <!-- ===== PÁGINA INICIAL ===== -->
+    <div id="home" class="pagina-inicial">
+        <!-- Foto principal - SUBSTITUA pela sua foto -->
+        <div class="avatar-principal"></div>
+        
+        <!-- Seletor de idioma -->
+        <div class="seletor-idioma">
+            <button class="botao-idioma ativo" onclick="mudarIdioma('pt')" data-lang="pt">🇧🇷 PT</button>
+            <button class="botao-idioma" onclick="mudarIdioma('en')" data-lang="en">🇺🇸 EN</button>
+        </div>
+        
+        <!-- Menu principal -->
+        <nav class="menu-navegacao">
+            <!-- Adicione data-text-pt e data-text-en em todos os botões -->
+            <button class="botao-nav" onclick="mostrarPagina('sobre')" data-text-pt="Sobre Mim" data-text-en="About Me">Sobre Mim</button>
+            <button class="botao-nav" onclick="mostrarPagina('galeria')" data-text-pt="Galeria" data-text-en="Gallery">Galeria</button>
+            <button class="botao-nav" onclick="mostrarPagina('curriculo')" data-text-pt="Currículo" data-text-en="Resume">Currículo</button>
+            <button class="botao-nav" onclick="mostrarPagina('contato')" data-text-pt="Contato" data-text-en="Contact">Contato</button>
+        </nav>
+
+        <div id="download-curriculo-home" style="margin-top: 2.5rem; text-align: center;">
+            <a id="botao-download-home" class="botao-download" download>
+                Currículo Completo
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA SOBRE ===== -->
+    <div id="sobre" class="pagina-conteudo">
+        <!-- Adicione data-text-pt e data-text-en nos títulos e textos -->
+        <button class="botao-fechar" onclick="mostrarPagina('home')" title="Voltar ao início" data-text-pt="✕" data-text-en="✕">✕</button>
+        <h2 class="titulo-secao" data-text-pt="Sobre Mim" data-text-en="About Me">Sobre Mim</h2>
+        
+        <div class="grid-sobre">
+            <div class="card-sobre">
+                <h3 data-text-pt="Minha História" data-text-en="My Story">Minha História</h3>
+                <div class="texto-sobre">
+                    <p data-text-pt="Desenvolvedor apaixonado por tecnologia e inovação. Minha jornada começou na Engenharia Civil, evoluiu para o mundo da Tecnologia e Design, onde descobri minha verdadeira paixão."
+                       data-text-en="Developer passionate about technology and innovation. My journey began in Civil Engineering, evolved into the world of Technology and Design, where I discovered my true passion.">
+                       Desenvolvedor apaixonado por tecnologia e inovação. Minha jornada começou na Engenharia Civil, evoluiu para o mundo da Tecnologia e Design, onde descobri minha verdadeira paixão.
+                    </p>
+                    
+                    <p data-text-pt="Estou sempre buscando aprender e aplicar as mais recentes tecnologias em projetos desafiadores." data-text-en="I am always looking to learn and apply the latest technologies in challenging projects.">
+                    Estou sempre buscando aprender e aplicar as mais recentes tecnologias em projetos desafiadores.
+                    </p>
+                    <p data-text-pt="Gosto bastante de One Piece, Games e RPG." data-text-en="I really enjoy One Piece, Games, and RPG.">
+                    Gosto bastante de One Piece, Games e RPG.
+                    
+                    <p><strong>📍 Localização:</strong><br>
+                    Maracanaú, CE - Brasil<br>
+                    📧 brennobener@outlook.com<br>
+                    📱 (85) 99239-2237<br>
+                    🌐 linkedin.com/in/brennobener</p>
+                </div>
+            </div>
+            
+            <div class="card-sobre">
+                <h3>Minhas Habilidades</h3>
+                <div class="texto-sobre">
+                    <ul class="lista-habilidades">
+                        <li><strong>Design:</strong> UI/UX Design com IA</li>
+                        <li><strong>Gestão:</strong> Liderança de Equipes, Análise de Riscos</li>
+                        <li><strong>Linguagens:</strong> Python, JavaScript, HTML/CSS</li>
+                        <li><strong>Ferramentas:</strong> GitHub, Git, Power BI, Excel</li>
+                        <li><strong>Especialidades:</strong> Estruturas de Dados e Algoritmos</li>
+                        <li><strong>Cloud Computing:</strong> AWS (Fundamentos)</li>
+                        <li><strong>Análise de Dados:</strong> Power BI, Scientific Computing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA GALERIA ===== -->
+    <div id="galeria" class="pagina-conteudo">
+        <button class="botao-fechar" onclick="mostrarPagina('home')" title="Voltar ao início">✕</button>
+        <h2 class="titulo-secao" data-text-pt="Minha Galeria" data-text-en="My Gallery">Minha Galeria</h2>
+        
+        <p class="intro-galeria">
+            Uma coleção de momentos e lugares especiais capturados através das minhas lentes. 
+            Cada imagem conta uma história única e representa uma parte da minha jornada.
+        </p>
+
+        <!-- SEÇÃO 1: MARACANAÚ -->
+        <div class="secao-local">
+            <h3 class="titulo-local">🏙️ Maracanaú - Minha Cidade</h3>
+            <div class="grid-fotos">
+                <!-- SUBSTITUA estas imagens pelas suas fotos -->
+                <div class="card-foto" onclick="abrirFullscreen('./images/maracanau-1.jpg', 'Centro de Maracanaú', 'Vista do centro da cidade onde cresci')">
+                    <img src="./images/maracanau-1.jpg" alt="Centro de Maracanaú" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Centro da Cidade</div>
+                        <div class="descricao-foto">Vista do centro movimentado de Maracanaú</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/maracanau-2.jpg', 'Parque de Maracanaú', 'Um dos locais mais bonitos da cidade')">
+                    <img src="./images/maracanau-2.jpg" alt="Parque de Maracanaú" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Parque Local</div>
+                        <div class="descricao-foto">Área verde preservada no coração da cidade</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/maracanau-3.jpg', 'Ruas de Maracanaú', 'As ruas que conheço desde criança')">
+                    <img src="./images/maracanau-3.jpg" alt="Ruas de Maracanaú" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Ruas Familiares</div>
+                        <div class="descricao-foto">Caminhos que percorro desde a infância</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 2: FORTALEZA -->
+        <div class="secao-local">
+            <h3 class="titulo-local">🌆 Fortaleza - Capital</h3>
+            <div class="grid-fotos">
+                <!-- SUBSTITUA estas imagens pelas suas fotos -->
+                <div class="card-foto" onclick="abrirFullscreen('./images/fortaleza-1.jpg', 'Centro de Fortaleza', 'O coração da capital cearense')">
+                    <img src="./images/fortaleza-1.jpg" alt="Centro de Fortaleza" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Centro Histórico</div>
+                        <div class="descricao-foto">Arquitetura e história da capital</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/fortaleza-2.jpg', 'Mercado Central', 'Tradição e cultura local')">
+                    <img src="./images/fortaleza-2.jpg" alt="Mercado Central" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Mercado Central</div>
+                        <div class="descricao-foto">Coração cultural e comercial da cidade</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/fortaleza-3.jpg', 'Fortaleza à Noite', 'A cidade que nunca dorme')">
+                    <img src="./images/fortaleza-3.jpg" alt="Fortaleza à Noite" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Vida Noturna</div>
+                        <div class="descricao-foto">Luzes e movimento da capital à noite</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3: PRAIA DO FUTURO -->
+        <div class="secao-local">
+            <h3 class="titulo-local">🌊 Praia do Futuro - Paraíso</h3>
+            <div class="grid-fotos">
+                <!-- SUBSTITUA estas imagens pelas suas fotos -->
+                <div class="card-foto" onclick="abrirFullscreen('./images/praia-1.jpg', 'Ondas da Praia', 'O som eterno do mar')">
+                    <img src="./images/praia-1.jpg" alt="Ondas da Praia" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Ondas Infinitas</div>
+                        <div class="descricao-foto">A dança eterna das águas do Atlântico</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/praia-2.jpg', 'Pôr do Sol', 'Magia do entardecer')">
+                    <img src="./images/praia-2.jpg" alt="Pôr do Sol" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Pôr do Sol</div>
+                        <div class="descricao-foto">Momento mágico onde o céu encontra o mar</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/praia-3.jpg', 'Barracas de Praia', 'Cultura e gastronomia local')">
+                    <img src="./images/praia-3.jpg" alt="Barracas de Praia" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Barracas Tradicionais</div>
+                        <div class="descricao-foto">Sabores e cultura à beira-mar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4: NATUREZA/PARQUES -->
+        <div class="secao-local">
+            <h3 class="titulo-local">🌳 Natureza - Refúgio Verde</h3>
+            <div class="grid-fotos">
+                <!-- SUBSTITUA estas imagens pelas suas fotos -->
+                <div class="card-foto" onclick="abrirFullscreen('./images/natureza-1.jpg', 'Árvores Centenárias', 'Guardiãs do tempo')">
+                    <img src="./images/natureza-1.jpg" alt="Árvores Centenárias" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Árvores Ancestrais</div>
+                        <div class="descricao-foto">Testemunhas silenciosas da história</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/natureza-2.jpg', 'Trilha Verde', 'Caminhos na natureza')">
+                    <img src="./images/natureza-2.jpg" alt="Trilha Verde" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Trilhas Naturais</div>
+                        <div class="descricao-foto">Caminhos que levam à paz interior</div>
+                    </div>
+                </div>
+                
+                <div class="card-foto" onclick="abrirFullscreen('./images/natureza-3.jpg', 'Refúgio Natural', 'Onde encontro inspiração')">
+                    <img src="./images/natureza-3.jpg" alt="Refúgio Natural" class="imagem-foto">
+                    <div class="overlay-foto">
+                        <div class="titulo-foto">Meu Refúgio</div>
+                        <div class="descricao-foto">Local onde busco inspiração e tranquilidade</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA CURRÍCULO ===== -->
+    <div id="curriculo" class="pagina-conteudo">
+        <button class="botao-fechar" onclick="mostrarPagina('home')" title="Voltar ao início">✕</button>
+        <h2 class="titulo-secao" data-text-pt="Meu Currículo" data-text-en="My Resume">Meu Currículo</h2>
+        
+        <p class="intro-curriculo">
+            Trajetória profissional marcada pela constante evolução e busca por excelência. 
+            Combinando experiência técnica com habilidades de liderança e gestão.
+        </p>
+        
+        <div class="grid-curriculo">
+            <div class="card-curriculo">
+                <h4>📚 Formação Acadêmica e Cursos</h4>
+                <p>
+                    <strong>UI/UX Design com IA</strong><br>
+                    Digital College<br><br>
+                    
+                    <strong>Análise e Desenvolvimento de Sistemas</strong><br>
+                    UNIC - Universidade de Cuiabá<br><br>
+                    
+                    <strong>Engenharia Civil</strong><br>
+                    UNIFOR - Universidade de Fortaleza
+                </p>
+            </div>
+            
+            <div class="card-curriculo">
+                <h4>💼 Experiência Profissional</h4>
+                <p>
+                    <strong>Amazon</strong><br>
+                    Auxiliar de Logística<br>
+                    Gestão de processos e otimização operacional<br><br>
+                    
+                    <strong>ABAX Consultoria</strong><br>
+                    Consultor de Gestão de Riscos<br>
+                    Análise e mitigação de riscos empresariais<br><br>
+                    
+                    <strong>Ruffo Recife</strong><br>
+                    Chefe de Bar<br>
+                    Liderança de equipe e atendimento ao cliente<br><br>
+                </p>
+            </div>
+            
+            <div class="card-curriculo">
+                <h4>⚡ Habilidades Técnicas</h4>
+                <p>
+                    <strong>Linguagens de Programação:</strong><br>
+                    Python, JavaScript, HTML/CSS<br><br>
+                    
+                    <strong>Tecnologias:</strong><br>
+                    Power BI, Git, GitHub<br>
+                    Estruturas de Dados e Algoritmos<br><br>
+                    
+                    <strong>Especialidades:</strong><br>
+                    UI/UX Design
+                </p>
+            </div>
+            
+            <div class="card-curriculo">
+                <h4>🏆 Certificações</h4>
+                <p>
+                    <strong>Harvard CS50</strong> (2024)<br>
+                    Introduction to Computer Science<br><br>
+                    
+                    <strong>AWS Cloud Practitioner</strong><br>
+                    Santander Bootcamp<br><br>
+                    
+                    <strong>Scientific Computing with Python</strong><br>
+                    FreeCodeCamp<br><br>
+                    
+                    <strong>Power BI Completo</strong><br>
+                    Data Science Academy<br><br>
+                    
+                    <strong>UI/UX Design com IA</strong><br>
+                    Digital College
+                </p>
+            </div>
+        </div>
+        
+        <!-- Botão para download do currículo -->
+        <div style="text-align: center;">
+            <a id="botao-download-curriculo" class="botao-download" download>
+                Currículo Completo
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA CONTATO ===== -->
+    <div id="contato" class="pagina-conteudo">
+        <button class="botao-fechar" onclick="mostrarPagina('home')" title="Voltar ao início">✕</button>
+        <h2 class="titulo-secao" data-text-pt="Entre em Contato" data-text-en="Get in Touch">Entre em Contato</h2>
+        
+        <p class="intro-curriculo">
+            Vamos conversar! Estou sempre aberto a novas oportunidades, 
+            projetos desafiadores e conexões profissionais.
+        </p>
+        
+        <div class="grid-curriculo">
+            <div class="card-curriculo">
+                <h4>📧 E-mail</h4>
+                <p>
+                    <strong>brennobener@outlook.com</strong><br><br>
+                    
+                    Canal principal para comunicações profissionais, 
+                    propostas de projetos e colaborações.
+                </p>
+            </div>
+            
+            <div class="card-curriculo" onclick="window.open('https://wa.me/5585992392237', '_blank')">
+                <h4>📱 Telefone</h4>
+                <p>
+                    <strong>(85) 99239-2237</strong><br><br>
+                    Disponível para conversas diretas, 
+                    discussões técnicas e reuniões.
+                </p>
+            </div>
+            
+            <div class="card-curriculo" onclick="window.open('https://www.linkedin.com/in/brennobener/', '_blank')">
+                <h4>🌐 LinkedIn</h4>
+                <p>
+                    <strong>linkedin.com/in/brennobener</strong><br><br>
+                    Conecte-se comigo para networking profissional 
+                    e acompanhe minha jornada.
+                </p>
+            </div>
+            
+            <div class="card-curriculo" onclick="window.open('https://github.com/brennobener', '_blank')">
+                <h4>💻 GitHub</h4>
+                <p>
+                    <strong>github.com/brennobener</strong><br><br>
+                    Explore meus projetos open-source 
+                    e contribuições para a comunidade.
+                </p>
+            </div>
+
+            <!-- Adicione o card do Behance abaixo, igual aos outros -->
+            <div class="card-curriculo" onclick="window.open('https://www.behance.net/brennobener', '_blank')">
+                <h4 data-text-pt="🎨 Behance" data-text-en="🎨 Behance">🎨 Behance</h4>
+                <p>
+                    <strong data-text-pt="behance.net/brennobener" data-text-en="behance.net/brennobener">behance.net/brennobener</strong><br><br>
+                    <span data-text-pt="Veja meus projetos de design, portfólios visuais e experimentações criativas." data-text-en="See my design projects, visual portfolios, and creative experiments.">
+                        Veja meus projetos de design, portfólios visuais e experimentações criativas.
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL FULLSCREEN PARA FOTOS ===== -->
+    <div id="modalFullscreen" class="modal-fullscreen">
+        <div class="container-fullscreen">
+            <img id="imagemFullscreen" src="" alt="" class="imagem-fullscreen">
+            <button class="botao-fechar-modal" onclick="fecharFullscreen()" title="Fechar">✕</button>
+            <div class="info-fullscreen">
+                <div id="tituloFullscreen" class="titulo-fullscreen">Título da Foto</div>
+                <div id="descricaoFullscreen" class="descricao-fullscreen">Descrição da foto</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== SISTEMA DE TRADUÇÃO =====
+        const traducoes = {
+            pt: {
+                'sobre-mim': 'Sobre Mim',
+                'galeria': 'Galeria',
+                'curriculo': 'Currículo',
+                'contato': 'Contato',
+                'minha-galeria': 'Minha Galeria',
+                'meu-curriculo': 'Meu Currículo',
+                'entre-em-contato': 'Entre em Contato'
+            },
+            en: {
+                'sobre-mim': 'About Me',
+                'galeria': 'Gallery',
+                'curriculo': 'Resume',
+                'contato': 'Contact',
+                'minha-galeria': 'My Gallery',
+                'meu-curriculo': 'My Resume',
+                'entre-em-contato': 'Get in Touch'
+            }
+        };
+
+        let idiomaAtual = 'pt';
+
+        // Função para mudar idioma
+        function mudarIdioma(idioma) {
+            idiomaAtual = idioma;
+            
+            // Atualizar botões de idioma
+            document.querySelectorAll('.botao-idioma').forEach(btn => {
+                btn.classList.toggle('ativo', btn.dataset.lang === idioma);
+            });
+            
+            // Atualizar textos com data-text
+            document.querySelectorAll('[data-text-pt]').forEach(elemento => {
+                const textoPt = elemento.getAttribute('data-text-pt');
+                const textoEn = elemento.getAttribute('data-text-en');
+                elemento.textContent = idioma === 'pt' ? textoPt : textoEn;
+            });
+            
+            // Salvar preferência
+            localStorage.setItem('idioma-preferido', idioma);
+
+            atualizarBotaoDownloadCurriculo();
+        }
+
+        // ===== NAVEGAÇÃO ENTRE PÁGINAS =====
+        function mostrarPagina(nomePagina) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.pagina-inicial, .pagina-conteudo').forEach(pagina => {
+                pagina.style.display = 'none';
+                pagina.classList.remove('ativa');
+            });
+            
+            // Mostrar página solicitada
+            const paginaDestino = document.getElementById(nomePagina);
+            if (paginaDestino) {
+                if (nomePagina === 'home') {
+                    paginaDestino.style.display = 'flex';
+                } else {
+                    paginaDestino.style.display = 'block';
+                    paginaDestino.classList.add('ativa');
+                }
+                
+                // Rolar para o topo
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ===== MODAL FULLSCREEN PARA FOTOS =====
+        function abrirFullscreen(caminhoImagem, titulo, descricao) {
+            const modal = document.getElementById('modalFullscreen');
+            const imagem = document.getElementById('imagemFullscreen');
+            const tituloElement = document.getElementById('tituloFullscreen');
+            const descricaoElement = document.getElementById('descricaoFullscreen');
+            
+            // Configurar conteúdo do modal
+            imagem.src = caminhoImagem;
+            imagem.alt = titulo;
+            tituloElement.textContent = titulo;
+            descricaoElement.textContent = descricao;
+            
+            // Mostrar modal
+            modal.classList.add('ativo');
+            document.body.style.overflow = 'hidden'; // Impedir scroll da página
+        }
+
+        function fecharFullscreen() {
+            const modal = document.getElementById('modalFullscreen');
+            modal.classList.remove('ativo');
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+
+        // ===== EVENTOS DE TECLADO =====
+        document.addEventListener('keydown', function(evento) {
+            // Fechar modal com ESC
+            if (evento.key === 'Escape') {
+                const modalAtivo = document.getElementById('modalFullscreen').classList.contains('ativo');
+                if (modalAtivo) {
+                    fecharFullscreen();
+                }
+            }
+            
+            // Navegação com números (Ctrl + número)
+            if (evento.ctrlKey || evento.metaKey) {
+                const paginas = ['home', 'sobre', 'galeria', 'curriculo', 'contato'];
+                const numero = parseInt(evento.key);
+                
+                if (numero >= 1 && numero <= 5) {
+                    mostrarPagina(paginas[numero - 1]);
+                    evento.preventDefault();
+                }
+            }
+        });
+
+        // ===== EVENTOS DE CLIQUE =====
+        // Fechar modal clicando fora da imagem
+        document.getElementById('modalFullscreen').addEventListener('click', function(evento) {
+            if (evento.target === this) {
+                fecharFullscreen();
+            }
+        });
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌟 Portfólio carregado com sucesso!');
+            
+            // Carregar idioma salvo
+            const idiomaSalvo = localStorage.getItem('idioma-preferido') || 'pt';
+            mudarIdioma(idiomaSalvo);
+            
+            // Animação de entrada suave
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Mostrar página inicial
+            mostrarPagina('home');
+            
+            // Log para debug
+            console.log('📁 Lembre-se: suas fotos devem estar na pasta /images/');
+
+            atualizarBotaoDownloadCurriculo();
+        });
+
+        function atualizarBotaoDownloadCurriculo() {
+            // Lógica para o botão da página inicial
+            const botaoHome = document.getElementById('botao-download-home');
+            if (botaoHome) {
+                if (idiomaAtual === 'pt') {
+                    botaoHome.href = './curriculo/Meu Curriculo 2025.pdf';
+                    botaoHome.textContent = 'Currículo Completo';
+                } else {
+                    botaoHome.href = './curriculo/Brenno_Bener_UIUX_CV_2025.pdf';
+                    botaoHome.textContent = 'Complete Resume';
+                }
+            }
+            // Lógica para o botão da página currículo
+            const botaoCurriculo = document.getElementById('botao-download-curriculo');
+            if (botaoCurriculo) {
+                if (idiomaAtual === 'pt') {
+                    botaoCurriculo.href = './curriculo/Meu Curriculo 2025.pdf';
+                    botaoCurriculo.textContent = 'Currículo Completo';
+                } else {
+                    botaoCurriculo.href = './curriculo/Brenno_Bener_UIUX_CV_2025.pdf';
+                    botaoCurriculo.textContent = 'Complete Resume';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
